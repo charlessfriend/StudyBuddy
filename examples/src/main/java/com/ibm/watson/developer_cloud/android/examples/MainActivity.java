@@ -16,6 +16,53 @@
 
 package com.ibm.watson.developer_cloud.android.examples;
 
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.StrictMode;
+import android.support.annotation.NonNull;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.AbsoluteSizeSpan;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import com.ibm.watson.developer_cloud.android.AlchemyLanguage.AlchemyLanguage;
+import com.ibm.watson.developer_cloud.android.rank_and_retrieve.rank_and_retrieve;
+import com.ibm.watson.developer_cloud.android.speech_common.v1.TokenProvider;
+import com.ibm.watson.developer_cloud.android.speech_to_text.v1.ISpeechDelegate;
+import com.ibm.watson.developer_cloud.android.speech_to_text.v1.SpeechToText;
+import com.ibm.watson.developer_cloud.android.speech_to_text.v1.dto.SpeechConfiguration;
+import com.ibm.watson.developer_cloud.android.text_to_speech.v1.TextToSpeech;
+import com.ibm.mobilefirstplatform.clientsdk.android.core.api.BMSClient;
+import com.ibm.mobilefirstplatform.clientsdk.android.core.api.Response;
+import com.ibm.mobilefirstplatform.clientsdk.android.core.api.ResponseListener;
+import com.ibm.mobilefirstplatform.clientsdk.android.core.api.Request;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,54 +71,8 @@ import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Vector;
-
-import android.app.FragmentTransaction;
-import android.graphics.Typeface;
-import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.AbsoluteSizeSpan;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.app.ActionBar;
-import android.app.Fragment;
-
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.StrictMode;
-import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 // IBM Watson SDK
-import com.ibm.watson.developer_cloud.android.AlchemyLanguage.AlchemyLanguage;
-import com.ibm.watson.developer_cloud.android.rank_and_retrieve.rank_and_retrieve;
-import com.ibm.watson.developer_cloud.android.speech_to_text.v1.dto.SpeechConfiguration;
-import com.ibm.watson.developer_cloud.android.speech_to_text.v1.ISpeechDelegate;
-import com.ibm.watson.developer_cloud.android.speech_to_text.v1.SpeechToText;
-import com.ibm.watson.developer_cloud.android.text_to_speech.v1.TextToSpeech;
-import com.ibm.watson.developer_cloud.android.speech_common.v1.TokenProvider;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MainActivity extends Activity {
 

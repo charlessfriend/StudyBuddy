@@ -19,7 +19,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':speech-android-wrapper')
     compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.ibm.mobilefirstplatform.clientsdk.android:core:1.1.0'
 }
